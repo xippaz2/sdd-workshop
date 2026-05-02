@@ -1,50 +1,45 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+Version change: none → 1.0.0
+Modified principles: Layer Separation; Test-First; Minimal Dependencies; Simplicity First; CLI-Only Delivery
+Added sections: Project Scope Constraints; Development Workflow
+Templates requiring updates: .specify/templates/plan-template.md ✅ updated; .specify/templates/spec-template.md ✅ updated
+Follow-up TODOs: none
+-->
+
+# Todo CLI Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Layer Separation
+비즈니스 로직은 사용자 인터페이스와 분리된 독립 레이어에서 구현한다. CLI 입력 처리, 출력 렌더링, 상태 저장과 업무 규칙은 분리하여 테스트 가능하고 재사용 가능한 서비스 계층을 만든다.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Test-First
+테스트 코드가 구현 코드보다 먼저 작성된다. 테스트가 없는 구현 코드는 허용하지 않으며, 모든 요구사항은 실패하는 테스트부터 시작하여 구현 전 검증되어야 한다.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Minimal Dependencies
+외부 패키지를 설치하기 전에 반드시 필요성을 검토한다. 불필요한 의존성은 추가하지 않으며, 표준 라이브러리로 해결할 수 있는 기능을 먼저 선택한다.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Simplicity First
+지금 당장 필요하지 않은 추상화 레이어는 만들지 않는다. 명확하고 직접적인 구현을 우선하고, 복잡한 설계는 실제 요구가 확인될 때까지 지연한다.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### CLI-Only Delivery
+이 프로젝트는 터미널 CLI 도구로 구현한다. REST API 서버, GUI, 웹 인터페이스는 이 프로젝트의 범위 밖이며, 모든 사용자 경험은 명령줄과 텍스트 출력에 집중한다.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Project Scope Constraints
+- 프로젝트 범위는 터미널 기반 Todo 관리 CLI 도구로 제한된다.
+- REST API, 웹 UI, 데스크톱 GUI, 모바일 앱은 금지된 구현 경로이다.
+- 기능 설계와 문서화는 CLI 명령, 옵션, 표준 입출력 흐름을 중심으로 해야 한다.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+- 모든 변경은 헌법 원칙과 일치해야 하며, PR과 코드 리뷰에서 CLI 범위, 레이어 분리, 테스트 우선, 최소 의존성, 단순함 우선을 검증한다.
+- 핵심 구현 전에 테스트를 작성하고, 테스트가 실패하는 상태를 먼저 확보한 뒤에 코드를 작성한다.
+- 새로운 라이브러리 또는 패키지 추가는 반드시 명시적인 필요성 평가와 대안 분석을 포함한다.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+- 이 헌법은 프로젝트의 기본 개발 원칙을 정의하며, 모든 설계와 구현은 이 헌법을 우선적으로 따라야 한다.
+- 수정 또는 예외가 필요할 때는 문서화된 제안서를 작성하고 팀 합의를 받아야 한다.
+- 버전 관리는 MAJOR.MINOR.PATCH 형식을 사용하며, 헌법의 구조나 핵심 원칙 변경 시 MAJOR를, 새로운 정책 추가 시 MINOR를, 용어 정리나 문안 개선 시 PATCH를 증가시킨다.
+- 모든 PR은 적어도 한 명 이상의 리뷰어가 헌법 준수를 확인해야 하며, 테스트 우선 및 CLI 범위 위반이 없는지 확인해야 한다.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-05-02 | **Last Amended**: 2026-05-02
