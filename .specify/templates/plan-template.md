@@ -31,6 +31,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
+- Verify the feature remains within CLI/terminal scope and does not introduce REST API, GUI, or web interface obligations.
+- Verify implementation separates CLI input/output from business logic and service layers.
+- Verify test-first discipline: tests are written and failing before implementation begins.
+- Verify dependency additions are justified and minimal.
+
 [Gates determined based on constitution file]
 
 ## Project Structure

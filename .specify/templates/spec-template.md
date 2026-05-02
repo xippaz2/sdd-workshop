@@ -122,6 +122,7 @@
   chosen when the feature description did not specify certain details.
 -->
 
+- This feature is implemented as a terminal CLI tool and must not depend on REST API, GUI, or web interface components.
 - [Assumption about target users, e.g., "Users have stable internet connectivity"]
 - [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
 - [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
