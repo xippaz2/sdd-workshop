@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "이 프로젝트는 CLI 기반으로 Todo 관리앱을 만듭니다. 터미널에서 사용하는 생산성 관리 도구로 REST API나 GUI는 프로젝트의 범위 밖입니다."
 
+## Clarifications
+
+### Session 2026-05-03
+
+- Q: JSON 파일의 파일명과 경로는 무엇으로 할까요? → A: 현재 디렉토리에 todos.json 파일로 저장
+- Q: Todo ID는 어떻게 생성할까요? → A: 1부터 시작하는 순차 정수
+- Q: 완료된 Todo는 목록에서 어떻게 별도 표시할까요? → A: 목록 끝에 [DONE] 접두사로 표시
+- Q: 에지 케이스에 대한 구체적인 오류 메시지를 어떻게 할까요? → A: 빈 문자열: 'Todo 텍스트가 비어있음'; 잘못된 ID: '존재하지 않는 Todo ID'; 파일 손상: '데이터 파일이 손상됨'
+- Q: 'done' 명령이 완료된 Todo를 다시 미완료로 변경할 수 있나요? → A: 예, 완료 상태를 토글할 수 있음
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Todo 추가 (Priority: P1)
@@ -39,7 +49,7 @@
 
 ### User Story 3 - Todo 완료 표시 (Priority: P3)
 
-사용자가 Todo 항목을 완료로 표시할 수 있다.
+사용자가 Todo 항목을 완료로 표시하거나 미완료로 변경할 수 있다.
 
 **Why this priority**: Todo 관리의 완결 기능으로, 생산성 향상에 기여한다.
 
@@ -48,13 +58,14 @@
 **Acceptance Scenarios**:
 
 1. **Given** 미완료 Todo 존재, **When** `todo done 1` 입력, **Then** 첫 번째 Todo가 완료로 표시됨
-2. **Given** 완료된 Todo, **When** 목록 조회, **Then** 완료된 항목은 별도 표시됨
+2. **Given** 완료된 Todo, **When** 목록 조회, **Then** 완료된 항목은 목록 끝에 [DONE] 접두사로 표시됨
+3. **Given** 완료된 Todo 존재, **When** `todo done 1` 입력, **Then** 첫 번째 Todo가 미완료로 변경됨
 
 ### Edge Cases
 
-- 빈 문자열 Todo 추가 시도
-- 존재하지 않는 ID로 완료 표시
-- 저장 파일이 손상된 경우
+- 빈 문자열 Todo 추가 시도: 'Todo 텍스트가 비어있음' 오류 메시지 출력
+- 존재하지 않는 ID로 완료 표시: '존재하지 않는 Todo ID' 오류 메시지 출력
+- 저장 파일이 손상된 경우: '데이터 파일이 손상됨' 오류 메시지 출력
 
 ## Requirements *(mandatory)*
 
@@ -68,7 +79,7 @@
 
 ### Key Entities *(include if feature involves data)*
 
-- **Todo**: 텍스트 내용, 생성 시간, 완료 상태, ID를 가짐
+- **Todo**: 텍스트 내용, 생성 시간, 완료 상태, 1부터 시작하는 순차 정수 ID를 가짐
 
 ## Success Criteria *(mandatory)*
 
@@ -82,6 +93,6 @@
 ## Assumptions
 
 - This feature is implemented as a terminal CLI tool and must not depend on REST API, GUI, or web interface components.
-- Todo 데이터는 로컬 JSON 파일에 저장된다
+- Todo 데이터는 현재 디렉토리의 todos.json 파일에 저장된다
 - 우선순위나 카테고리는 지원하지 않는다
 - 다중 사용자는 고려하지 않는다
